@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -O3 -DNDEBUG -shared -Wl,-soname,libwhisper.so.1 -o libwhisper.so.1.7.6 CMakeFiles/whisper.dir/whisper.cpp.o  -Wl,-rpath,/home/tommy/LIVE_TRANSLATOR/build/whisper.cpp/ggml/src: ../ggml/src/libggml.so ../ggml/src/libggml-cpu.so ../ggml/src/libggml-base.so 

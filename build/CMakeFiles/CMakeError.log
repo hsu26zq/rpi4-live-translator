@@ -1,0 +1,128 @@
+Performing C++ SOURCE FILE Test GGML_COMPILER_SUPPORTS_FP16_FORMAT_I3E failed with the following output:
+Change Dir: /home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-fY2F1D
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_1ab46/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_1ab46.dir/build.make CMakeFiles/cmTC_1ab46.dir/build
+gmake[1]: Entering directory '/home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-fY2F1D'
+Building CXX object CMakeFiles/cmTC_1ab46.dir/src.cxx.o
+/usr/bin/c++ -DGGML_COMPILER_SUPPORTS_FP16_FORMAT_I3E  -mfp16-format=ieee -std=gnu++17 -o CMakeFiles/cmTC_1ab46.dir/src.cxx.o -c /home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-fY2F1D/src.cxx
+c++: error: unrecognized command-line option '-mfp16-format=ieee'
+gmake[1]: *** [CMakeFiles/cmTC_1ab46.dir/build.make:78: CMakeFiles/cmTC_1ab46.dir/src.cxx.o] Error 1
+gmake[1]: Leaving directory '/home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-fY2F1D'
+gmake: *** [Makefile:127: cmTC_1ab46/fast] Error 2
+
+
+Source file was:
+int main() { return 0; }
+
+Performing C++ SOURCE FILE Test GGML_MACHINE_SUPPORTS_dotprod failed with the following compile output:
+Change Dir: /home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-Z7ZslY
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_f0072/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_f0072.dir/build.make CMakeFiles/cmTC_f0072.dir/build
+gmake[1]: Entering directory '/home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-Z7ZslY'
+Building CXX object CMakeFiles/cmTC_f0072.dir/src.cxx.o
+/usr/bin/c++ -DGGML_MACHINE_SUPPORTS_dotprod  -mcpu=cortex-a72+dotprod -std=gnu++17 -o CMakeFiles/cmTC_f0072.dir/src.cxx.o -c /home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-Z7ZslY/src.cxx
+In file included from /home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-Z7ZslY/src.cxx:1:
+/usr/lib/gcc/aarch64-linux-gnu/12/include/arm_neon.h: In function ‘int main()’:
+/usr/lib/gcc/aarch64-linux-gnu/12/include/arm_neon.h:29527:1: error: inlining failed in call to ‘always_inline’ ‘int32x4_t vdotq_s32(int32x4_t, int8x16_t, int8x16_t)’: target specific option mismatch
+29527 | vdotq_s32 (int32x4_t __r, int8x16_t __a, int8x16_t __b)
+      | ^~~~~~~~~
+/home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-Z7ZslY/src.cxx:2:65: note: called from here
+    2 | int main() { int8x16_t _a, _b; volatile int32x4_t _s = vdotq_s32(_s, _a, _b); return 0; }
+      |                                                        ~~~~~~~~~^~~~~~~~~~~~
+gmake[1]: *** [CMakeFiles/cmTC_f0072.dir/build.make:78: CMakeFiles/cmTC_f0072.dir/src.cxx.o] Error 1
+gmake[1]: Leaving directory '/home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-Z7ZslY'
+gmake: *** [Makefile:127: cmTC_f0072/fast] Error 2
+
+
+...and run output:
+
+Return value: 1
+Source file was:
+#include <arm_neon.h>
+int main() { int8x16_t _a, _b; volatile int32x4_t _s = vdotq_s32(_s, _a, _b); return 0; }
+
+Performing C++ SOURCE FILE Test GGML_MACHINE_SUPPORTS_i8mm failed with the following compile output:
+Change Dir: /home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-SV6pbC
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_c76e4/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_c76e4.dir/build.make CMakeFiles/cmTC_c76e4.dir/build
+gmake[1]: Entering directory '/home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-SV6pbC'
+Building CXX object CMakeFiles/cmTC_c76e4.dir/src.cxx.o
+/usr/bin/c++ -DGGML_MACHINE_SUPPORTS_i8mm  -mcpu=cortex-a72+i8mm -std=gnu++17 -o CMakeFiles/cmTC_c76e4.dir/src.cxx.o -c /home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-SV6pbC/src.cxx
+In file included from /home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-SV6pbC/src.cxx:1:
+/usr/lib/gcc/aarch64-linux-gnu/12/include/arm_neon.h: In function ‘int main()’:
+/usr/lib/gcc/aarch64-linux-gnu/12/include/arm_neon.h:31774:1: error: inlining failed in call to ‘always_inline’ ‘int32x4_t vmmlaq_s32(int32x4_t, int8x16_t, int8x16_t)’: target specific option mismatch
+31774 | vmmlaq_s32 (int32x4_t __r, int8x16_t __a, int8x16_t __b)
+      | ^~~~~~~~~~
+/home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-SV6pbC/src.cxx:2:66: note: called from here
+    2 | int main() { int8x16_t _a, _b; volatile int32x4_t _s = vmmlaq_s32(_s, _a, _b); return 0; }
+      |                                                        ~~~~~~~~~~^~~~~~~~~~~~
+gmake[1]: *** [CMakeFiles/cmTC_c76e4.dir/build.make:78: CMakeFiles/cmTC_c76e4.dir/src.cxx.o] Error 1
+gmake[1]: Leaving directory '/home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-SV6pbC'
+gmake: *** [Makefile:127: cmTC_c76e4/fast] Error 2
+
+
+...and run output:
+
+Return value: 1
+Source file was:
+#include <arm_neon.h>
+int main() { int8x16_t _a, _b; volatile int32x4_t _s = vmmlaq_s32(_s, _a, _b); return 0; }
+
+Performing C++ SOURCE FILE Test GGML_MACHINE_SUPPORTS_sve failed with the following compile output:
+Change Dir: /home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-4PmAup
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_ad7c8/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_ad7c8.dir/build.make CMakeFiles/cmTC_ad7c8.dir/build
+gmake[1]: Entering directory '/home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-4PmAup'
+Building CXX object CMakeFiles/cmTC_ad7c8.dir/src.cxx.o
+/usr/bin/c++ -DGGML_MACHINE_SUPPORTS_sve  -mcpu=cortex-a72+sve -std=gnu++17 -o CMakeFiles/cmTC_ad7c8.dir/src.cxx.o -c /home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-4PmAup/src.cxx
+Linking CXX executable cmTC_ad7c8
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ad7c8.dir/link.txt --verbose=1
+/usr/bin/c++  -mcpu=cortex-a72+sve CMakeFiles/cmTC_ad7c8.dir/src.cxx.o -o cmTC_ad7c8 
+gmake[1]: Leaving directory '/home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-4PmAup'
+
+
+...and run output:
+Illegal instruction
+Return value: FAILED_TO_RUN
+Source file was:
+#include <arm_sve.h>
+int main()  { svfloat32_t _a, _b; volatile svfloat32_t _c = svadd_f32_z(svptrue_b8(), _a, _b); return 0; }
+
+Performing C++ SOURCE FILE Test GGML_MACHINE_SUPPORTS_sme failed with the following compile output:
+Change Dir: /home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-0v39VS
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_45b38/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_45b38.dir/build.make CMakeFiles/cmTC_45b38.dir/build
+gmake[1]: Entering directory '/home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-0v39VS'
+Building CXX object CMakeFiles/cmTC_45b38.dir/src.cxx.o
+/usr/bin/c++ -DGGML_MACHINE_SUPPORTS_sme  -mcpu=cortex-a72+sme -std=gnu++17 -o CMakeFiles/cmTC_45b38.dir/src.cxx.o -c /home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-0v39VS/src.cxx
+cc1plus: error: invalid feature modifier ‘sme’ in ‘-mcpu=cortex-a72+sme’
+cc1plus: note: valid arguments are: fp simd crypto crc lse fp16 rcpc rdma dotprod aes sha2 sha3 sm4 fp16fml sve profile rng memtag sb ssbs predres sve2 sve2-sm4 sve2-aes sve2-sha3 sve2-bitperm tme i8mm f32mm f64mm bf16 flagm pauth ls64 mops; did you mean ‘sm4’?
+gmake[1]: *** [CMakeFiles/cmTC_45b38.dir/build.make:78: CMakeFiles/cmTC_45b38.dir/src.cxx.o] Error 1
+gmake[1]: Leaving directory '/home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-0v39VS'
+gmake: *** [Makefile:127: cmTC_45b38/fast] Error 2
+
+
+...and run output:
+
+Return value: 1
+Source file was:
+#include <arm_sme.h>
+__arm_locally_streaming int main() { __asm__ volatile("smstart; smstop;"); return 0; }
+
+Performing C++ SOURCE FILE Test GGML_MACHINE_SUPPORTS_nosme failed with the following output:
+Change Dir: /home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-1xO5yO
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_2ce93/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_2ce93.dir/build.make CMakeFiles/cmTC_2ce93.dir/build
+gmake[1]: Entering directory '/home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-1xO5yO'
+Building CXX object CMakeFiles/cmTC_2ce93.dir/src.cxx.o
+/usr/bin/c++ -DGGML_MACHINE_SUPPORTS_nosme  -mcpu=cortex-a72+nosme -std=gnu++17 -o CMakeFiles/cmTC_2ce93.dir/src.cxx.o -c /home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-1xO5yO/src.cxx
+cc1plus: error: invalid feature modifier ‘sme’ in ‘-mcpu=cortex-a72+nosme’
+cc1plus: note: valid arguments are: fp simd crypto crc lse fp16 rcpc rdma dotprod aes sha2 sha3 sm4 fp16fml sve profile rng memtag sb ssbs predres sve2 sve2-sm4 sve2-aes sve2-sha3 sve2-bitperm tme i8mm f32mm f64mm bf16 flagm pauth ls64 mops; did you mean ‘sm4’?
+gmake[1]: *** [CMakeFiles/cmTC_2ce93.dir/build.make:78: CMakeFiles/cmTC_2ce93.dir/src.cxx.o] Error 1
+gmake[1]: Leaving directory '/home/tommy/LIVE_TRANSLATOR/build/CMakeFiles/CMakeScratch/TryCompile-1xO5yO'
+gmake: *** [Makefile:127: cmTC_2ce93/fast] Error 2
+
+
+Source file was:
+int main() { return 0; }
+

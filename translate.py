@@ -1,29 +1,34 @@
-import sys
-from argostranslate import translate
+# argos_translate_embed.py
+from argostranslate import package, translate
 
-def main():
-    if len(sys.argv) != 3:
-        print("Usage: translate.py input.txt output.txt")
-        return
+def translate_text(text, from_lang="en", to_lang="zh"):
+    available_packages = package.get_available_packages()
+    installed_languages = translate.get_installed_languages()
 
-    input_file, output_file = sys.argv[1], sys.argv[2]
+    from_lang_obj = None
+    to_lang_obj = None
 
-    with open(input_file, "r", encoding="utf-8") as f:
-        text = f.read().strip()
+    for lang in installed_languages:
+        if lang.code == from_lang:
+            from_lang_obj = lang
+        if lang.code == to_lang:
+            to_lang_obj = lang
 
-    installed = translate.get_installed_languages()
-    from_lang = next((x for x in installed if x.code == "en"), None)
-    to_lang = next((x for x in installed if x.code == "zh"), None)
+    if not from_lang_obj or not to_lang_obj:
+        # try install package if missing
+        for pkg in available_packages:
+            if pkg.from_code == from_lang and pkg.to_code == to_lang:
+                pkg.install()
+                installed_languages = translate.get_installed_languages()
+                for lang in installed_languages:
+                    if lang.code == from_lang:
+                        from_lang_obj = lang
+                    if lang.code == to_lang:
+                        to_lang_obj = lang
+                break
 
-    if not from_lang or not to_lang:
-        print("Languages not installed")
-        return
+    if not from_lang_obj or not to_lang_obj:
+        return "ERROR: Language package not found"
 
-    translation_fn = from_lang.get_translation(to_lang)
-    translated_text = translation_fn.translate(text)
-
-    with open(output_file, "w", encoding="utf-8") as f:
-        f.write(translated_text)
-
-if __name__ == "__main__":
-    main()
+    translation = from_lang_obj.get_translation(to_lang_obj)
+    return translation.translate(text)

@@ -2,8 +2,8 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Wall -O2
 LIBS = -lasound -pthread
 
-TARGET = live_translator
-SRC = live_translator.cpp
+TARGET = main
+SRC = main.cpp
 
 .PHONY: all clean run display
 
