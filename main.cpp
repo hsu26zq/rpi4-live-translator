@@ -19,7 +19,7 @@
 // --- Argos Translate integration ---
 void python_init() {
     Py_Initialize();
-    PyRun_SimpleString("import sys; sys.path.append('/home/tommy/live-translator/whisper.cpp/examples/stream')");
+    PyRun_SimpleString("import sys; sys.path.append('/home/tommy/LIVE_TRANSLATOR')"); // Adjust path as needed
     PyRun_SimpleString("sys.stdout = sys.__stdout__");
     PyRun_SimpleString("sys.stderr = sys.__stderr__");
 }
